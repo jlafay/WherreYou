@@ -1,0 +1,54 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="WherreYou.View.SendToContactView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:WherreYou.ViewModel"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="CornflowerBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="WherreYou?" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Send Your Position" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="54"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="{Binding BonClient}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Longitude : " Margin="20,20,0,20" />
+            <TextBlock Text="{Binding Lo}" Margin="150,20,0,20"/>
+            
+            <TextBlock Grid.Row="1" Text="Latitude : " Margin="20,20,0,20"/>
+            <TextBlock Grid.Row="1" Text="{Binding La}" Margin="150,20,0,20" />
+            
+            <TextBlock Grid.Row="2" Text="Address : " Margin="20,20,0,20"/>
+            <TextBlock  Grid.Row="2" Text="{Binding Address}" Margin="150,20,0,20"/>
+            
+            <Button Grid.Row="3" Command="{Binding sendClickCommand}" HorizontalAlignment="Left" Margin="0,20,0,0" VerticalAlignment="Top" Height="110" Width="456" Content="{Binding Send}" RenderTransformOrigin="0.967,0.488" Grid.ColumnSpan="2" />
+            <TextBlock Grid.Row="4" Text="{Binding Loading}" Grid.ColumnSpan="2" Margin="125,0,0,0"/>
+        </Grid>
+    </Grid>
+    
+    <phone:PhoneApplicationPage.DataContext>
+        <viewmodel:SendToContactViewModel />
+    </phone:PhoneApplicationPage.DataContext>
+
+</phone:PhoneApplicationPage>
